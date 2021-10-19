@@ -1,11 +1,14 @@
-namespace attestat.Pages{
+namespace SF_QATestLab.Pages
+{
     public abstract class BasePage : BaseLayout
-
     {
-
-        public BasePage()
+        public BasePage(bool pageVisible = true)
         {
-            RootVisible();
+
+            if (pageVisible)
+            {
+                RootVisible();
+            }
         }
 
     }

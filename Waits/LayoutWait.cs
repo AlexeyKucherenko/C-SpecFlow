@@ -2,18 +2,13 @@ using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using System.Linq;
 using System.Collections.Generic;
-using attestat.Pages;
+using SF_QATestLab.Pages;
 
-namespace attestat.Waits
+namespace SF_QATestLab.Waits
 {
     public class LayoutWait : BaseWait
     {
 
-
-        public LayoutWait(IWebDriver driver) : base(driver)
-        {
-
-        }
         public LayoutWait(BaseLayout layout) : base(layout.Driver)
         {
 

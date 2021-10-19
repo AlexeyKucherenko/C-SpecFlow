@@ -1,11 +1,9 @@
 using OpenQA.Selenium;
-using attestat.Pages.Blocks;
-using attestat.Waits;
-using attestat.Services;
+using SF_QATestLab.Pages.Blocks;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace attestat.Pages
+namespace SF_QATestLab.Pages
 {
     public class CatalogPage : BasePage
     {
@@ -16,13 +14,13 @@ namespace attestat.Pages
             GetProducts();
         }
 
-        public List<ProductBlock> GetProducts()
-        {
-            return new LayoutWait(WebdriverHandler.Driver.Value).PresentAll(By.XPath(ProductBlock.RootLocatorValue)).Select(e => new ProductBlock(e)).ToList();
-        }
         protected override By RootLocator()
         {
             throw new System.NotImplementedException();
+        }
+        public List<ProductBlock> GetProducts()
+        {
+            return Wait().PresentAll(By.XPath(ProductBlock.RootLocatorValue)).Select(e => new ProductBlock(e)).ToList();
         }
     }
 }

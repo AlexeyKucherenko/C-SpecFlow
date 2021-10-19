@@ -1,10 +1,6 @@
-using attestat.Services;
-using attestat.Waits;
 using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace attestat.Pages.Blocks
+namespace SF_QATestLab.Pages.Blocks
 {
     public class ProductBlock : BaseLayout
     {
@@ -12,7 +8,7 @@ namespace attestat.Pages.Blocks
         private readonly string name;
         private readonly IWebElement root;
 
-        public static readonly string RootLocatorValue = "//li[contains(@class, 'catelog-grid__cell')]";
+        public static readonly string RootLocatorValue = "//li[contains(@class, 'catalog-grid__cell')]";
         public ProductBlock(IWebElement root)
         {
             this.root = root;
@@ -20,12 +16,12 @@ namespace attestat.Pages.Blocks
         public ProductBlock(string name)
         {
             this.name = name;
-            root = Root();
+            root = RootElement();
         }
 
         public ProductBlock() : this("")
         {
-            root = Root();
+            root = RootElement();
         }
 
         protected override By RootLocator()

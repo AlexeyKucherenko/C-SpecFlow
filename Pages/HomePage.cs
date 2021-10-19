@@ -1,11 +1,12 @@
-using System.Configuration;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using attestat.Pages.Blocks;
+using SF_QATestLab.Pages.Blocks;
 
-namespace attestat.Pages{
+namespace SF_QATestLab.Pages
+{
     [Binding]
-    class HomePage : BasePage{
+    class HomePage : BasePage
+    {
         public HeaderBlock header;
         public SidebarBlock side;
         public HomeMainBlock main;
@@ -20,14 +21,6 @@ namespace attestat.Pages{
             header = new HeaderBlock();
             side = new HomeSidebarBlock();
             main = new HomeMainBlock();
-        }
-
-        [Given(@"Rozetka is open")]
-        public HomePage Navigate(){
-            var  appSettigns = ConfigurationManager.GetSection("environments");
-            // TODO
-            // base.Navigate(appSettigns.Get("url"));
-            return this;
         }
     }
 }

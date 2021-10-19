@@ -1,8 +1,8 @@
 using OpenQA.Selenium;
-using attestat.Waits;
-using attestat.Services;
+using SF_QATestLab.Waits;
+using SF_QATestLab.Services;
 
-namespace attestat.Pages
+namespace SF_QATestLab.Pages
 {
     public abstract class BaseLayout
     {
@@ -15,7 +15,7 @@ namespace attestat.Pages
 
         public BaseLayout()
         {
-            this.Driver = WebdriverHandler.Driver.Value;
+            this.Driver = WebDriverHandler.Driver.Value;
         }
 
         public LayoutWait Wait()
@@ -25,19 +25,27 @@ namespace attestat.Pages
 
         protected abstract By RootLocator();
 
-        protected virtual IWebElement Root(){
+        protected virtual IWebElement RootElement()
+        {
             return Wait().Visible(RootLocator());
         }
 
         public virtual void RootVisible()
         {
-            Wait().Visible(RootLocator());
+            RootElement();
         }
 
-        public virtual T RootVisible<T>() where T : BaseLayout
+        public bool isRootVisible()
         {
-            Wait().Visible(RootLocator());
-            return (T)this;
+            try
+            {
+                RootVisible();
+                return true;
+            }
+            catch (WebDriverException)
+            {
+                return false;
+            }
         }
 
         public void Navigate(string url)

@@ -2,47 +2,58 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace attestat.Waits{
+namespace SF_QATestLab.Waits
+{
     public class BaseWait
     {
-        private IWebDriver wd;
+        private readonly IWebDriver wd;
 
-        public TimeSpan Interval
+        private static int waitTime = 10;
+        private static double pollTime = 0.5;
+        private static string msg = "";
+
+        public int WaitTime
         {
-            get; set;
+            get
+            {
+                return waitTime;
+            }
+            set
+            {
+                waitTime = value;
+            }
         }
-
-        public TimeSpan Timeout
+        public double PollTime
         {
-            get; set;
+            get
+            {
+                return pollTime;
+            }
+            set
+            {
+                pollTime = value;
+            }
+
         }
         public string Msg
         {
-            get; set;
-        }
-
-        public bool IsPositive
-        {
-            get; set;
+            get
+            {
+                return msg;
+            }
+            set
+            {
+                msg = value;
+            }
         }
         public BaseWait(IWebDriver wd)
         {
             this.wd = wd;
-            IsPositive = true;
-
-        }
-
-        public BaseWait WithConf(double timeoutSec = 10, double intervalMillisec = 500, string msg = "")
-        {
-            this.Timeout = TimeSpan.FromSeconds(timeoutSec);
-            this.Interval = TimeSpan.FromMilliseconds(intervalMillisec);
-            this.Msg = msg;
-            return this;
         }
 
         public TResult Until<TResult>(Func<IWebDriver, TResult> condition)
         {
-            var wdw = new WebDriverWait(new SystemClock(), wd, Timeout, Interval);
+            var wdw = new WebDriverWait(new SystemClock(), wd, TimeSpan.FromSeconds(WaitTime), TimeSpan.FromSeconds(PollTime));
             wdw.Message = Msg;
             return wdw.Until(condition);
         }

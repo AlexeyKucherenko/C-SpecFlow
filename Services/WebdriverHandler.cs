@@ -1,12 +1,10 @@
 using System.Threading;
 using OpenQA.Selenium;
 
-namespace attestat.Services
+namespace SF_QATestLab.Services
 {
-    public static class WebdriverHandler
+    public static class WebDriverHandler
     {
-        private static ThreadLocal<IWebDriver> driver;
-
         public static ThreadLocal<IWebDriver> Driver
         {
             get;

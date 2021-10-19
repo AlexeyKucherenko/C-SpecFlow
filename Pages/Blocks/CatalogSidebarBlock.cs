@@ -1,6 +1,8 @@
 
-namespace attestat.Pages.Blocks{
-    public class CatalogSidebarBlock: SidebarBlock{
-        
+namespace SF_QATestLab.Pages.Blocks
+{
+    public class CatalogSidebarBlock : SidebarBlock
+    {
+
     }
 }
